@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +18,7 @@ public class Diagnosis implements Comparable<Diagnosis>{
     private String date;
     private long doctorId;
 
-    protected Diagnosis() {
+    public Diagnosis() {
     }
 
     public Diagnosis(long patientId, String diagnosisName, String date, long doctorId) {
@@ -82,7 +83,7 @@ public class Diagnosis implements Comparable<Diagnosis>{
 
     @Override
     public int compareTo(Diagnosis o) {
-        return 0;
+        return this.diagnosisName.toLowerCase().compareTo(o.diagnosisName.toLowerCase());
     }
 
     @Override

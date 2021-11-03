@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -15,7 +16,7 @@ public class Doctor implements Comparable<Doctor>{
     private String name;
     private String phoneNumber;
 
-    protected Doctor() {
+    public Doctor() {
 
     }
 
@@ -63,7 +64,7 @@ public class Doctor implements Comparable<Doctor>{
 
     @Override
     public int compareTo(Doctor o) {
-        return 0;
+        return this.name.toLowerCase().compareTo(o.name.toLowerCase());
     }
 
     @Override

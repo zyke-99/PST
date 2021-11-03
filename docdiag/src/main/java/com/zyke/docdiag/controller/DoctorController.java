@@ -32,7 +32,7 @@ public class DoctorController {
         return "doctor";
     }
 
-    @PostMapping
+    @PostMapping("/add-doctor")
     public String add(@ModelAttribute("doctor") Doctor d, BindingResult result) {
 
         if(result.hasErrors()) {

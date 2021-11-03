@@ -20,7 +20,7 @@ public class DocdiagApplication {
 		SpringApplication.run(DocdiagApplication.class, args);
 	}
 
-	@Bean
+/*	@Bean
 	public CommandLineRunner demo(DoctorRepository repository, DiagnosisRepository diag) {
 		return (args) -> {
 			Doctor dc = new Doctor("John Doe", "877777");
@@ -29,6 +29,6 @@ public class DocdiagApplication {
 			diag.save(new Diagnosis(4, "Belekas", "2021-11-02", 2));
 			System.out.println(repository.findAll());
 		};
-	}
+	}*/
 
 }
