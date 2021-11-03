@@ -1,7 +1,7 @@
 <%@ include file="common/header.jspf"%>
 <%@ include file="common/navigation.jspf"%>
 <div class="container">
-	<p>WELCOME WELCOME WELCOME!!!</p>
-	<p>name: ${name}</p>
+	<h1>Home page</h1>
+	<p>Welcome to the home page</p>
 </div>
 <%@ include file="common/footer.jspf"%>
