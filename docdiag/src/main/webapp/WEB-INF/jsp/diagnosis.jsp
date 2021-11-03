@@ -8,19 +8,19 @@
 	<form:input path="patientId" type="text" required="required" />
 	<form:errors path="patientId" />
 
-	<form:label path="diagnosis">Diagnosis</form:label>
-	<form:input path="diagnosis" type="text" required="required" />
-	<form:errors path="diagnosis" />
-
 	<form:label path="date">Date</form:label>
-    <form:input path="date" type="date" required="required" />
+    <form:input path="date" type="date" required="required"/>
     <form:errors path="date" />
 
-	<form:select path="doctor">
-	    <form:option value="NONE"> --SELECT--</form:option>
+    <fmt:formatDate value="" pattern="yyyy-mm-dd" />
+    <form:label path="diagnosisName">Diagnosis</form:label>
+    <form:input path="diagnosisName" type="text" required="required"/>
+    <form:errors path="diagnosisName" />
+
+	<form:select path="doctorId">
 	    <c:forEach items="${doctors}" var="doctor">
-	        <form:option value="${doctor}" label="${doctor.name}"/>
-	    </c:forEach>
+                <option value="${doctor.id}" ${doctor.id == diagnosis.doctorId ? 'selected="selected"' : ''}>${doctor.name}</option>
+        </c:forEach>
 	</form:select>
 
 	<button type="submit">Add</button>

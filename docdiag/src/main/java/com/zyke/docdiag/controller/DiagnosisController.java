@@ -1,18 +1,21 @@
 package com.zyke.docdiag.controller;
 
+import com.zyke.docdiag.dto.DiagnosisTableDto;
 import com.zyke.docdiag.model.Diagnosis;
 import com.zyke.docdiag.model.Doctor;
 import com.zyke.docdiag.repository.DiagnosisRepository;
 import com.zyke.docdiag.service.DiagnosisService;
 import com.zyke.docdiag.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class DiagnosisController {
@@ -23,28 +26,24 @@ public class DiagnosisController {
     @Autowired
     DoctorService doctorService;
 
-    @GetMapping("/home")
-    public String home() {
-        return "welcome";
-    }
-
     @GetMapping("/diagnoses")
     public String showDiagnosis(ModelMap model) {
-        model.put("diagnoses", diagnosisService.findAll());
+        model.put("diagnoses", diagnosisService.findAllTableDto());
         return "diagnoses-table";
     }
 
     @GetMapping("/add-diagnosis")
     public String showAdd(ModelMap model) {
-        model.addAttribute("diagnosis", new Diagnosis(0, "", null, null));
+        model.addAttribute("diagnosis", new Diagnosis(0, "", null, 0));
         model.addAttribute("doctors", doctorService.findAll());
         return "diagnosis";
     }
 
     @GetMapping("/update-diagnosis/{id}")
     public String showUpdate(ModelMap model, @PathVariable long id) {
-        model.put("doctor", doctorService.findById(id));
-        return "doctor";
+        model.put("diagnosis", diagnosisService.findById(id));
+        model.put("doctors", doctorService.findAll());
+        return "diagnosis";
     }
 
     @PostMapping("/add-diagnosis")

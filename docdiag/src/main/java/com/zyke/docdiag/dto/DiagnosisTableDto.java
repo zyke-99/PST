@@ -1,29 +1,19 @@
-package com.zyke.docdiag.model;
+package com.zyke.docdiag.dto;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
-import java.util.Date;
-import java.util.Objects;
-
-@Entity
-public class Diagnosis implements Comparable<Diagnosis>{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class DiagnosisTableDto {
     private long id;
     private long patientId;
     private String diagnosisName;
     private String date;
+    private String doctorName;
     private long doctorId;
 
-    protected Diagnosis() {
-    }
-
-    public Diagnosis(long patientId, String diagnosisName, String date, long doctorId) {
+    public DiagnosisTableDto(long id, long patientId, String diagnosisName, String date, String doctorName, long doctorId) {
+        this.id = id;
         this.patientId = patientId;
         this.diagnosisName = diagnosisName;
         this.date = date;
+        this.doctorName = doctorName;
         this.doctorId = doctorId;
     }
 
@@ -59,6 +49,14 @@ public class Diagnosis implements Comparable<Diagnosis>{
         this.date = date;
     }
 
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
     public long getDoctorId() {
         return doctorId;
     }
@@ -68,30 +66,13 @@ public class Diagnosis implements Comparable<Diagnosis>{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Diagnosis diagnosis = (Diagnosis) o;
-        return patientId == diagnosis.patientId && doctorId == diagnosis.doctorId && diagnosisName.equals(diagnosis.diagnosisName) && date.equals(diagnosis.date);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(patientId, diagnosisName, date, doctorId);
-    }
-
-    @Override
-    public int compareTo(Diagnosis o) {
-        return 0;
-    }
-
-    @Override
     public String toString() {
-        return "Diagnosis{" +
+        return "DiagnosisTableDto{" +
                 "id=" + id +
                 ", patientId=" + patientId +
                 ", diagnosisName='" + diagnosisName + '\'' +
                 ", date='" + date + '\'' +
+                ", doctorName='" + doctorName + '\'' +
                 ", doctorId=" + doctorId +
                 '}';
     }

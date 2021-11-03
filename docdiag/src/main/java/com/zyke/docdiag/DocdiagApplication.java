@@ -26,7 +26,7 @@ public class DocdiagApplication {
 			Doctor dc = new Doctor("John Doe", "877777");
 			repository.save(dc);
 			repository.save(new Doctor("Mich Ore", "877777"));
-			diag.save(new Diagnosis(4, "Vezis", new Date(), dc));
+			diag.save(new Diagnosis(4, "Belekas", "2021-11-02", 2));
 			System.out.println(repository.findAll());
 		};
 	}

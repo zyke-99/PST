@@ -4,17 +4,16 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
-public class Doctor {
+public class Doctor implements Comparable<Doctor>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
     private String phoneNumber;
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    private List<Diagnosis> diagnoses;
 
     protected Doctor() {
 
@@ -47,6 +46,24 @@ public class Doctor {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Doctor doctor = (Doctor) o;
+        return id == doctor.id && name.equals(doctor.name) && phoneNumber.equals(doctor.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, phoneNumber);
+    }
+
+    @Override
+    public int compareTo(Doctor o) {
+        return 0;
     }
 
     @Override

@@ -16,9 +16,9 @@
             <tr>
                 <td>${diagnosis.id}</td>
                 <td>${diagnosis.patientId}</td>
-                <td>${diagnosis.doctor.id}</td>
-                <td>${diagnosis.doctor.name}</td>
-                <td>${diagnosis.diagnosis}</td>
+                <td>${diagnosis.doctorId}</td>
+                <td>${diagnosis.doctorName}</td>
+                <td>${diagnosis.diagnosisName}</td>
                 <td>${diagnosis.date}</td>
                 <td><a type="button" href="/update-diagnosis/${diagnosis.id}">UPDATE</a></td>
                 <td><a type="button" href="/delete-diagnosis/${diagnosis.id}">DELETE</a></td>
